@@ -1,9 +1,19 @@
 extends layout
 block content
-    h1 #{heading}
-    p first paragraph xxx
-    p now lets loop 
-    each item in data  
-        p #{item}
+    h1 Students list 
+    //- Define a form whose data will be passed to the /student-select route via a POST request
+    form(action='/student-select', method='POST')
+        //- The POST parameter will be called student
+        select(name='studentParam')
+            //- We loop through the students array, extracting a variable called student
+            for student in students
+                //- we build the option list from the id and name properties on the student object
+                option(value=student.id) #{student.name}
+        //- render the submit button
+        input.submit-button(type='submit' value='Submit')
 
-
+        div 
+        div 
+        //- Example of an image: the actual image should be in /static/images 
+        //- And you must have this line in app.js : app.use(express.static("static"));
+        img(src='/images/cat.jpeg' width='500px' height='200px')
